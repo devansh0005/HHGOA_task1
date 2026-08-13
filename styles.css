@@ -1,0 +1,147 @@
+/* CSS Variables matching HH Goa 2026 Brand */
+:root {
+    --brand-green: #0d7a3a;
+    --brand-green-dark: #085a29;
+    --brand-yellow: #ffd500;
+    --brand-pink: #ff007f;
+    --brand-white: #ffffff;
+    --font-heading: 'Playfair Display', serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-hand: 'Caveat', cursive;
+}
+
+body {
+    font-family: var(--font-mono);
+    color: var(--brand-white);
+    background-color: var(--brand-green-dark);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Tropical Image Background (Uses sc2.png) */
+.tropical-image-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/bg.png') no-repeat center center;
+    background-size: cover;
+    z-index: 0;
+    filter: brightness(0.65) saturate(1.2); /* Dim slightly to make form pop */
+}
+
+/* Header & Logo */
+.brand-logo-img {
+    max-width: 90%;
+    width: 450px;
+    height: auto;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.5));
+}
+
+/* Glassmorphic Generator Card */
+.generator-card {
+    background: rgba(13, 122, 58, 0.35) !important; /* Semi-transparent brand green */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 2rem !important;
+}
+
+/* Step Titles */
+.step-title {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--brand-yellow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.step-title span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--brand-pink);
+    color: white;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 14px;
+}
+
+/* Upload Zone */
+.upload-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.2);
+    min-height: 180px;
+    transition: all 0.3s ease;
+}
+.upload-zone:hover {
+    border-color: var(--brand-yellow);
+    background: rgba(255, 213, 0, 0.1);
+}
+.upload-icon {
+    font-size: 2.5rem;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Glass Inputs */
+.glass-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-family: var(--font-mono);
+}
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+.glass-input:focus {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: var(--brand-yellow) !important;
+    box-shadow: 0 0 0 4px rgba(255, 213, 0, 0.2) !important;
+}
+
+/* Action Buttons */
+.action-btn {
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.btn-primary {
+    background-color: var(--brand-pink) !important;
+    color: white !important;
+}
+.btn-primary:hover {
+    background-color: #e60073 !important;
+}
+.share-btn {
+    background-color: #111 !important;
+}
+
+/* Utilities */
+.text-yellow { color: var(--brand-yellow); }
+
+/* Animations */
+.animate-slide-down { animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
