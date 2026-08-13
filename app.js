@@ -350,47 +350,33 @@ document.getElementById('shareBtn').addEventListener('click', async () => {
 
     try {
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        const file = new File([blob], 'HH_Goa_2026_ID.png', { type: 'image/png' });
-        
         const shareTextContent = `Hii, I'm "${state.name || 'Devansh Mittal'}" and I'm going to HH Goa 2026! 🌴💻 \nGet yours→https://devansh0005.github.io/HHGOA_task1/\n#FrameInGoa @247pmstudioReady`;
 
-        // Check if Web Share API with files is supported (e.g., mobile Safari/Chrome, Telegram, WhatsApp natively)
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-                files: [file],
-                title: 'HH Goa 2026',
-                text: shareTextContent
-            });
+        // Upload to Cloudinary to get a link
+        const cloudName = 'ycmbo2ys';
+        const uploadPreset = 'hh_goa_preset';
+        
+        const formData = new FormData();
+        formData.append('file', blob);
+        formData.append('upload_preset', uploadPreset);
+
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+        
+        if (data.secure_url) {
+            const imageUrl = data.secure_url;
+            const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTextContent)}&url=${encodeURIComponent(imageUrl)}`;
+            window.open(intentUrl, '_blank');
         } else {
-            // Fallback for desktop browsers that don't support file sharing
-            // Upload to Cloudinary to get a link
-            const cloudName = 'ycmbo2ys';
-            const uploadPreset = 'hh_goa_preset';
-            
-            const formData = new FormData();
-            formData.append('file', blob);
-            formData.append('upload_preset', uploadPreset);
-
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
-                method: 'POST',
-                body: formData
-            });
-
-            const data = await response.json();
-            
-            if (data.secure_url) {
-                const imageUrl = data.secure_url;
-                const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTextContent)}&url=${encodeURIComponent(imageUrl)}`;
-                window.open(intentUrl, '_blank');
-            } else {
-                throw new Error('Upload failed');
-            }
+            throw new Error('Upload failed');
         }
     } catch (error) {
-        if (error.name !== 'AbortError') { // Ignore abort errors when user cancels the native share sheet
-            console.error("Error sharing:", error);
-            alert("Failed to share. Please try downloading the image instead.");
-        }
+        console.error("Error sharing:", error);
+        alert("Failed to share. Please try downloading the image instead.");
     } finally {
         shareBtn.disabled = false;
         shareText.style.opacity = '1';
