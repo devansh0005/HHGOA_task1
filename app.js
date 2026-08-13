@@ -62,7 +62,7 @@ assets.logo.src = 'assets/logo.png';
 assets.pattern.onload = onAssetLoad;
 assets.pattern.src = 'assets/pattern.png';
 assets.bg.onload = onAssetLoad;
-assets.bg.src = 'assets/bg.png'; 
+assets.bg.src = 'assets/bg.png?v=2'; 
 assets.palmLeft.onload = onAssetLoad;
 assets.palmLeft.src = 'assets/palm_left.png';
 assets.palmRight.onload = onAssetLoad;

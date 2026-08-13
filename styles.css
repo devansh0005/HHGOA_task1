@@ -26,7 +26,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('assets/bg.png') no-repeat center center;
+    background: url('assets/bg.png?v=2') no-repeat center center;
     background-size: cover;
     z-index: 0;
     filter: brightness(0.65) saturate(1.2); /* Dim slightly to make form pop */
