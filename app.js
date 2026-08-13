@@ -350,7 +350,7 @@ document.getElementById('shareBtn').addEventListener('click', async () => {
 
     try {
         const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        const shareTextContent = `Hii, I'm "${state.name || 'Devansh Mittal'}" and I'm going to HH Goa 2026! 🌴💻 \nGet yours→https://devansh0005.github.io/HHGOA_task1/\n#FrameInGoa @247pmstudioReady`;
+        const shareTextContent = `Hii, I'm "${state.name || 'Devansh Mittal'}" and I'm going to HH Goa 2026! 🌴💻 \nGet yours→ https://devansh0005.github.io/HHGOA_task1/\n\n#FrameInGoa @247pmstudioReady`;
 
         // Upload to Cloudinary to get a link
         const cloudName = 'ycmbo2ys';
